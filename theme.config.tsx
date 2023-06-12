@@ -18,7 +18,12 @@ const config: DocsThemeConfig = {
       <link rel='icon' type='image/png' href='/favicon.svg' />
     </>
   ),
-  footer: {}
+  nextThemes: {
+    defaultTheme: 'light'
+  },
+  footer: {
+    component: null
+  }
 }
 
 export default config

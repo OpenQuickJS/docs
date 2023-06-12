@@ -1,3 +1,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.active > .nx-bg-primary-100 {
+  color: hsl(var(--nextra-primary-hue) 100% 45% / var(--tw-text-opacity));
+  background: rgba(246, 247, 249, var(--tw-bg-opacity));
+}
