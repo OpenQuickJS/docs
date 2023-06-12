@@ -4,7 +4,7 @@ import { DocsThemeConfig } from 'nextra-theme-docs'
 const config: DocsThemeConfig = {
   logo: <span className='text-lg font-bold'>OpenQuickJS Docs</span>,
   project: {
-    link: 'https://github.com/OpenQuickJS/docs'
+    link: 'https://github.com/OpenQuickJS/quickjs'
   },
   docsRepositoryBase: 'https://github.com/OpenQuickJS/docs',
   head: (
