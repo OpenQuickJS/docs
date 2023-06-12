@@ -6,7 +6,7 @@ const config: DocsThemeConfig = {
   project: {
     link: 'https://github.com/OpenQuickJS/docs'
   },
-  docsRepositoryBase: 'https://github.com/shuding/nextra-docs-template',
+  docsRepositoryBase: 'https://github.com/OpenQuickJS/docs',
   head: (
     <>
       <meta name='viewport' content='width=device-width, initial-scale=1.0' />
@@ -23,6 +23,20 @@ const config: DocsThemeConfig = {
   },
   footer: {
     component: null
+  },
+  editLink: {
+    text: 'https://github.com/OpenQuickJS/docs',
+    component({ children: _children, className, filePath }) {
+      return (
+        <a
+          className='nx-text-xs nx-font-medium nx-text-gray-500 hover:nx-text-gray-900 dark:nx-text-gray-400 dark:hover:nx-text-gray-100 contrast-more:nx-text-gray-800 contrast-more:dark:nx-text-gray-50'
+          href={`https://github.com/OpenQuickJS/docs/edit/main/${filePath}`}
+          target='_blank'
+        >
+          Edit this page
+        </a>
+      )
+    }
   }
 }
 
