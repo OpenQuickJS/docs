@@ -1,6 +1,6 @@
 {
   "index": "Introduction",
-  "get-started": "Get Started",
-  "develop": "Developer Guide",
+  "user": "User Guide",
+  "developer": "Developer Guide",
   "android": "QuickJS Android"
 }

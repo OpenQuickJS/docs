@@ -1,0 +1,19 @@
+# QuickJS
+
+[QuickJS](https://bellard.org/quickjs/) is a small and embeddable Javascript engine. It supports the ES2020 specification including modules, asynchronous generators, proxies and BigInt.
+
+It supports mathematical extensions such as big decimal float float numbers (BigDecimal), big binary floating point numbers (BigFloat), and operator overloading.
+
+OpenQuickJS is a community-driven fork of QuickJS. We welcome and encourage issues and pull requests from all users.
+
+## Main Features
+
+1. Small and easily embeddable: just a few C files, no external dependency, 210 KiB of x86 code for a simple “hello world” program.
+2. Fast interpreter with very low startup time: runs the 69000 tests of the ECMAScript Test Suite2 in about 95 seconds on a single core of a desktop PC. The complete life cycle of a runtime instance completes in less than 300 microseconds.
+3. Almost complete ES2020 support including modules, asynchronous generators and full Annex B support (legacy web compatibility). Many features from the upcoming ES2021 specification 3 are also supported.
+4. Passes nearly 100% of the ECMAScript Test Suite tests when selecting the ES2020 features.
+5. Compile Javascript sources to executables with no external dependency.
+6. Garbage collection using reference counting (to reduce memory usage and have deterministic behavior) with cycle removal.
+7. Mathematical extensions: BigDecimal, BigFloat, operator overloading, bigint mode, math mode.
+8. Command line interpreter with contextual colorization and completion implemented in Javascript.
+9. Small built-in standard library with C library wrappers.
