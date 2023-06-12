@@ -1,3 +1,5 @@
 {
-  "c-apis": "QuickJS C APIs"
+  "get-started": "Get Started",
+  "internals": "Internals",
+  "recipes": "Recipes"
 }

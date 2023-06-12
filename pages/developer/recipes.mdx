@@ -1,0 +1,34 @@
+# Recipes
+
+## Basic QuickJS Recipe
+
+This guide demonstrates a simple usage of the QuickJS JavaScript engine in C programming language.
+
+### Ingredients
+
+- QuickJS Library
+- C Programming Environment (like GCC)
+
+#### Steps
+
+1. **Conversion to C String**
+
+   You can get the string representation of a `JSValue` using `JS_ToCString()`. This function takes the JS context and the JS value as its arguments.
+
+   ```c
+   const char *c_str = JS_ToCString(ctx, val);
+   ```
+
+2. **Strict Equality Check**
+
+   QuickJS provides the function js_strict_eq() for checking the strict equality (===) of two JS values.
+
+   Here is an example that checks if new_target is strictly equal to the global String object.
+
+   ```c
+   int is_equal = js_strict_eq(
+    ctx,
+    new_target,
+    JS_GetPropertyValue(ctx, ctx->global_obj, JS_NewString(ctx, "String"))
+   );
+   ```

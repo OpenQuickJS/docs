@@ -1,0 +1,204 @@
+# `os` module
+
+The os module provides Operating System specific functions:
+
+- Low level file access
+- Signals
+- Timers
+- Asynchronous I/O
+- Workers (threads)
+
+The OS functions usually return 0 if OK or an OS specific negative error code.
+
+Available exports:
+
+## `open(filename, flags, mode = 0o666)`
+
+Open a file. Return a handle or < 0 if error.
+
+- O_RDONLY
+- O_WRONLY
+- O_RDWR
+- O_APPEND
+- O_CREAT
+- O_EXCL
+- O_TRUNC
+
+POSIX open flags.
+
+- O_TEXT
+
+(Windows specific). Open the file in text mode. The default is binary mode.
+
+## `close(fd)`
+
+Close the file handle fd.
+
+## `seek(fd, offset, whence)`
+
+Seek in the file. Use std.SEEK\_\* for whence. offset is either a number or a bigint. If offset is a bigint, a bigint is returned too.
+
+## `read(fd, buffer, offset, length)`
+
+Read length bytes from the file handle fd to the ArrayBuffer buffer at byte position offset. Return the number of read bytes or < 0 if error.
+
+## `write(fd, buffer, offset, length)`
+
+Write length bytes to the file handle fd from the ArrayBuffer buffer at byte position offset. Return the number of written bytes or < 0 if error.
+
+## `isatty(fd)`
+
+Return true is fd is a TTY (terminal) handle.
+
+## `ttyGetWinSize(fd)`
+
+Return the TTY size as [width, height] or null if not available.
+
+## `ttySetRaw(fd)`
+
+Set the TTY in raw mode.
+
+## `remove(filename)`
+
+Remove a file. Return 0 if OK or -errno.
+
+## `rename(oldname, newname)`
+
+Rename a file. Return 0 if OK or -errno.
+
+## `realpath(path)`
+
+Return [str, err] where str is the canonicalized absolute pathname of path and err the error code.
+
+## `getcwd()`
+
+Return [str, err] where str is the current working directory and err the error code.
+
+## `chdir(path)`
+
+Change the current directory. Return 0 if OK or -errno.
+
+## `mkdir(path, mode = 0o777)`
+
+Create a directory at path. Return 0 if OK or -errno.
+
+## `stat(path) and lstat(path)`
+
+Return [obj, err] where obj is an object containing the file status of path. err is the error code. The following fields are defined in obj: dev, ino, mode, nlink, uid, gid, rdev, size, blocks, atime, mtime, ctime. The times are specified in milliseconds since 1970. lstat() is the same as stat() excepts that it returns information about the link itself.
+
+- S_IFMT
+- S_IFIFO
+- S_IFCHR
+- S_IFDIR
+- S_IFBLK
+- S_IFREG
+- S_IFSOCK
+- S_IFLNK
+- S_ISGID
+- S_ISUID
+
+Constants to interpret the mode property returned by stat(). They have the same value as in the C system header sys/stat.h.
+
+## `utimes(path, atime, mtime)`
+
+Change the access and modification times of the file path. The times are specified in milliseconds since 1970. Return 0 if OK or -errno.
+
+## `symlink(target, linkpath)`
+
+Create a link at linkpath containing the string target. Return 0 if OK or -errno.
+
+## `readlink(path)`
+
+Return [str, err] where str is the link target and err the error code.
+
+## `readdir(path)`
+
+Return [array, err] where array is an array of strings containing the filenames of the directory path. err is the error code.
+
+## `setReadHandler(fd, func)`
+
+Add a read handler to the file handle fd. func is called each time there is data pending for fd. A single read handler per file handle is supported. Use func = null to remove the handler.
+
+## `setWriteHandler(fd, func)`
+
+Add a write handler to the file handle fd. func is called each time data can be written to fd.
+A single write handler per file handle is supported. Use func = null to remove the handler.
+
+## `signal(signal, func)`
+
+Call the function func when the signal signal happens. Only a single handler per signal number is supported. Use null to set the default handler or undefined to ignore the signal. Signal handlers can only be defined in the main thread.
+
+- SIGINT
+- SIGABRT
+- SIGFPE
+- SIGILL
+- SIGSEGV
+- SIGTERM
+
+POSIX signal numbers.
+
+## `kill(pid, sig)`
+
+Send the signal sig to the process pid.
+
+## `exec(args[, options])`
+
+Execute a process with the arguments args. options is an object containing optional parameters:
+
+- block: Boolean (default = true). If true, wait until the process is terminated. In this case, exec return the exit code if positive or the negated signal number if the process was interrupted by a signal. If false, do not block and return the process id of the child.
+- usePath: Boolean (default = true). If true, the file is searched in the PATH environment variable.
+- file: String (default = args[0]). Set the file to be executed.
+- cwd: String. If present, set the working directory of the new process.
+- stdin, stdout, stderr: If present, set the handle in the child for stdin, stdout or stderr.
+- env: Object. If present, set the process environment from the object key-value pairs. Otherwise use the same environment as the current process.
+- uid: Integer. If present, the process uid with setuid.
+- gid: Integer. If present, the process gid with setgid.
+
+## `waitpid(pid, options)`
+
+waitpid Unix system call. Return the array [ret, status]. ret contains -errno in case of error.
+
+## `WNOHANG`
+
+Constant for the options argument of waitpid.
+
+## `dup(fd)`
+
+dup Unix system call.
+
+## `dup2(oldfd, newfd)`
+
+dup2 Unix system call.
+
+## `pipe()`
+
+pipe Unix system call. Return two handles as [read_fd, write_fd] or null in case of error.
+
+## `sleep(delay_ms)`
+
+Sleep during delay_ms milliseconds.
+
+## `setTimeout(func, delay)`
+
+Call the function func after delay ms. Return a handle to the timer.
+
+## `clearTimeout(handle)`
+
+Cancel a timer.
+
+## `platform`
+
+Return a string representing the platform: "linux", "darwin", "win32" or "js".
+
+## `Worker(module_filename)`
+
+Constructor to create a new thread (worker) with an API close to the WebWorkers. module_filename is a string specifying the module filename which is executed in the newly created thread. As for dynamically imported module, it is relative to the current script or module path. Threads normally don’t share any data and communicate between each other with messages. Nested workers are not supported. An example is available in tests/test_worker.js.
+
+The worker class has the following static properties:
+
+- parent: In the created worker, Worker.parent represents the parent worker and is used to send or receive messages.
+
+The worker instances have the following properties:
+
+- postMessage(msg): Send a message to the corresponding worker. msg is cloned in the destination worker using an algorithm similar to the HTML structured clone algorithm. SharedArrayBuffer are shared between workers. Current limitations: Map and Set are not supported yet.
+- onmessage: Getter and setter. Set a function which is called each time a message is received. The function is called with a single argument. It is an object with a data property containing the received message. The thread is not terminated if there is at least one non null onmessage handler.

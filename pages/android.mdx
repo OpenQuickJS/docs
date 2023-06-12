@@ -5,3 +5,17 @@ import { Callout } from 'nextra/components'
 <Callout type="info">
 this documentation is WIP.
 </Callout>
+
+## Concept
+
+### JSRuntime
+
+JSRuntime represents a Javascript runtime corresponding to an object heap. Several runtimes can exist at the same time but they cannot exchange objects. Inside a given runtime, no multi-threading is supported.
+
+### JSContext
+
+JSContext represents a Javascript context (or Realm). Each JSContext has its own global objects and system objects. There can be several JSContexts per JSRuntime and they can share objects, similar to frames of the same origin sharing Javascript objects in a web browser.
+
+### JSValue
+
+JSValue represents a Javascript value which can be a primitive type or an object. Available subclasses of `JSValue` are `JSNull`, `JSUndefined`, `JSBoolean`, `JSNumber`, `JSString`, `JSObject`, `JSArray`, `JSFunction`, `JSSymbol`.

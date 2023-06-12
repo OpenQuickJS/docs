@@ -1,4 +1,4 @@
-# Usages
+# Get Started
 
 ## Installation
 
@@ -115,7 +115,7 @@ Options are:
 
 The `qjscalc` application is a superset of the `qjs` command line interpreter implementing a Javascript calculator with arbitrarily large integer and floating point numbers, fractions, complex numbers, polynomials and matrices. The source code is in `qjscalc.js`. More documentation and a web version are available at http://numcalc.com.
 
-## Built-in tests
+## Tests
 
 A test262 (ECMAScript Test Suite) runner is included in the QuickJS archive. The test262 tests can be installed in the QuickJS source directory with:
 
