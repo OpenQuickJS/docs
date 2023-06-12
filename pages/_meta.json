@@ -1,5 +1,6 @@
 {
   "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)"
+  "get-started": "Get Started",
+  "develop": "Developer Guide",
+  "quickjs-android": "QuickJS Android"
 }
