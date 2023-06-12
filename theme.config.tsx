@@ -15,6 +15,7 @@ const config: DocsThemeConfig = {
         property='og:description'
         content='A community-driven QuickJS fork. Issues and Pull Requests are welcome.'
       />
+      <title>OpenQuickJS Docs</title>
       <link rel='icon' type='image/png' href='/favicon.svg' />
     </>
   ),
